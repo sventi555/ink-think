@@ -1,0 +1,9 @@
+@import "tailwindcss";
+
+body {
+  --content-width: 1080px;
+}
+
+@theme inline {
+  --font-sans: var(--font-inconsolata);
+}

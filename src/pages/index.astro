@@ -1,0 +1,48 @@
+---
+import Diamond from "../components/diamond.astro";
+import PageContainer from "../components/page-container.astro";
+import BaseLayout from "../layouts/base.astro";
+
+const diamondSize = "min(30vw, 30vh)";
+---
+
+<BaseLayout title="Stephen Edwards">
+  <PageContainer>
+    <div class="relative flex grow flex-col">
+      <h1 class="absolute top-0 left-0 text-4xl">Welcome</h1>
+
+      <div class="flex grow flex-col items-center justify-center">
+        <div class="flex rotate-45 flex-col gap-2 text-2xl sm:text-3xl">
+          <div class="flex gap-2">
+            <Diamond href="/music" size={diamondSize}>
+              <div class="flex flex-col items-center gap-2">
+                <span>Music</span>
+                <span class="text-4xl sm:text-5xl">&#x266B</span>
+              </div>
+            </Diamond>
+            <Diamond href="/photos" size={diamondSize}>
+              <div class="flex flex-col items-center gap-2">
+                <span>Photos</span>
+                <span class="text-4xl sm:text-5xl">&#x1F4F7</span>
+              </div>
+            </Diamond>
+          </div>
+          <div class="flex gap-2">
+            <Diamond href="/software" size={diamondSize}>
+              <div class="flex flex-col items-center gap-2">
+                <span>Software</span>
+                <span class="text-4xl sm:text-5xl">&#x1F4BB</span>
+              </div>
+            </Diamond>
+            <Diamond href="/thoughts" size={diamondSize}>
+              <div class="flex flex-col items-center gap-2">
+                <span>Thoughts</span>
+                <span class="text-4xl sm:text-5xl">&#x1F4D6</span>
+              </div>
+            </Diamond>
+          </div>
+        </div>
+      </div>
+    </div>
+  </PageContainer>
+</BaseLayout>

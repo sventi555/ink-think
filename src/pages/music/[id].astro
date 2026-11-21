@@ -1,0 +1,26 @@
+---
+import { getCollection } from "astro:content";
+import PageLayout from "../../layouts/page.astro";
+
+export async function getStaticPaths() {
+  const music = await getCollection("music");
+  return music.map((piece) => ({
+    params: { id: piece.id },
+    props: { piece },
+  }));
+}
+
+const { piece } = Astro.props;
+---
+
+<PageLayout title=`Music - ${piece.data.title}`>
+  <div class="flex flex-col items-center">
+    <h1 class="mb-4 text-3xl">{piece.data.title}</h1>
+    {piece.data.kind === "audio" && (
+      <audio controls src={`/media/audio/${piece.data.filename}`} />
+    )}
+    {piece.data.kind === "video" && (
+      <video controls src={`/media/video/${piece.data.filename}`} />
+    )}
+  </div>
+</PageLayout>

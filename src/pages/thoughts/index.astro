@@ -1,0 +1,23 @@
+---
+import { getCollection } from "astro:content";
+import PageLayout from "../../layouts/page.astro";
+
+const allThoughts = await getCollection("thoughts");
+---
+
+<PageLayout title="Thoughts">
+  <div class="mx-auto w-full max-w-[760px]">
+    <ul class="ml-4 flex list-outside list-[circle] flex-col gap-1">
+      {allThoughts.map((thought) => (
+        <li>
+          <a
+            href={`/thoughts/${thought.id}`}
+            class="block w-full border-b border-dashed border-neutral-400"
+          >
+            {thought.data.title}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</PageLayout>

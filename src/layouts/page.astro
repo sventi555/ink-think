@@ -1,0 +1,36 @@
+---
+import Diamond from "../components/diamond.astro";
+import NavLink from "../components/nav-link.astro";
+import PageContainer from "../components/page-container.astro";
+import BaseLayout from "./base.astro";
+
+const { title } = Astro.props;
+
+const diamondSize = "10px";
+---
+
+<BaseLayout title={title}>
+  <header class="sticky top-0 bg-amber-50 p-4 px-6 shadow">
+    <nav class="mx-auto flex max-w-(--content-width) gap-4">
+      <a href="/" class="flex rotate-45 flex-col justify-center gap-px">
+        <div class="flex gap-px">
+          <Diamond size={diamondSize} />
+          <Diamond size={diamondSize} />
+        </div>
+        <div class="flex gap-px">
+          <Diamond size={diamondSize} />
+          <Diamond size={diamondSize} />
+        </div>
+      </a>
+      <NavLink href="/music">Music</NavLink>
+      <NavLink href="/photos">Photos</NavLink>
+      <NavLink href="/software">Software</NavLink>
+      <NavLink href="/thoughts">Thoughts</NavLink>
+    </nav>
+  </header>
+  <main>
+    <PageContainer>
+      <slot />
+    </PageContainer>
+  </main>
+</BaseLayout>

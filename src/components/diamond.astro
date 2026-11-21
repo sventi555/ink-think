@@ -1,0 +1,15 @@
+---
+const { href, size } = Astro.props;
+
+const Wrapper = href ? "a" : "div";
+---
+
+<Wrapper
+  href={href}
+  class="flex flex-col items-center justify-center border"
+  style={{ width: size, height: size }}
+>
+  <div class="-rotate-45">
+    <slot />
+  </div>
+</Wrapper>

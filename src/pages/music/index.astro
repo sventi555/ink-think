@@ -1,0 +1,46 @@
+---
+import { getCollection } from "astro:content";
+import { sha256 } from "js-sha256";
+import PageLayout from "../../layouts/page.astro";
+import Disc from "./_disc.astro";
+
+const allMusic = await getCollection("music");
+
+const normHue = (hue: number) => {
+  return ((hue % 360) + 360) % 360;
+};
+
+const stringToHsl = (str: string) => {
+  const hueStart = 350; // end of magenta/pink
+  const hueEnd = 260; // start of violet/purple
+  const range = normHue(hueEnd - hueStart);
+
+  const hueHash = sha256.create().update(str).hex();
+  const trimmedHash = hueHash.slice(0, 3);
+  const hue = normHue(hueStart + (parseInt(trimmedHash, 16) % range));
+
+  const sat = 30;
+  const lig = 50;
+  return `hsl(${hue}, ${sat}%, ${lig}%)`;
+};
+---
+
+<PageLayout title="Music">
+  <div class="flex flex-col items-center">
+    <div class="flex flex-wrap justify-around gap-4">
+      {allMusic.map((piece) => {
+        return (
+          <a
+            href={`/music/${piece.id}`}
+            class="flex flex-col items-center gap-1"
+          >
+            <div class="overflow-hidden rounded-full transition-transform duration-800 ease-in-out hover:rotate-360">
+              <Disc size={160} color={stringToHsl(piece.data.title)} />
+            </div>
+            <span class="text-center">{piece.data.title}</span>
+          </a>
+        );
+      })}
+    </div>
+  </div>
+</PageLayout>

@@ -1,0 +1,26 @@
+{
+  "name": "ink-think",
+  "scripts": {
+    "build": "astro build",
+    "check": "astro check",
+    "dev": "astro dev",
+    "serve": "astro preview",
+    "format": "prettier --check ."
+  },
+  "packageManager": "pnpm@10.18.2",
+  "dependencies": {
+    "@astrojs/check": "0.9.12",
+    "@tailwindcss/vite": "4.3.5",
+    "astro": "7.4.12",
+    "clsx": "2.1.1",
+    "js-sha256": "1.1.0",
+    "tailwindcss": "4.3.5",
+    "typescript": "6.0.3"
+  },
+  "devDependencies": {
+    "prettier": "3.10.1",
+    "prettier-plugin-astro": "1.1.2",
+    "prettier-plugin-astro-organize-imports": "0.4.14",
+    "prettier-plugin-tailwindcss": "0.0.0-insiders.5b27f94"
+  }
+}

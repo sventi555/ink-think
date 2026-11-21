@@ -1,0 +1,12 @@
+---
+import clsx from "clsx";
+
+const { href } = Astro.props;
+const { pathname } = Astro.url;
+
+const selected = pathname.startsWith(href);
+---
+
+<a href={href} class={clsx(selected && "font-bold")}>
+  <slot />
+</a>

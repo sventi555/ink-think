@@ -1,0 +1,16 @@
+---
+import { Font } from "astro:assets";
+import "../styles/global.css";
+
+const { title } = Astro.props;
+---
+
+<html>
+  <head>
+    <Font cssVariable="--font-inconsolata" preload />
+    <title>{title}</title>
+  </head>
+  <body class="bg-amber-50 text-neutral-800">
+    <slot />
+  </body>
+</html>
