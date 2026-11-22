@@ -3,6 +3,7 @@ import { getCollection } from "astro:content";
 import PageLayout from "../../layouts/page.astro";
 import PageTitle from "../../components/page-title.astro";
 import clsx from "clsx";
+import Crumb from "../../components/crumb.astro";
 
 export async function getStaticPaths() {
   const music = await getCollection("music");
@@ -16,6 +17,7 @@ const { piece } = Astro.props;
 ---
 
 <PageLayout title=`Music - ${piece.data.title}`>
+  <Crumb>Music:</Crumb>
   <PageTitle>{piece.data.title}</PageTitle>
 
   <div class="flex grow flex-col items-center justify-center">
