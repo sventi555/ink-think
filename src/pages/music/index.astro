@@ -3,6 +3,7 @@ import { getCollection } from "astro:content";
 import { sha256 } from "js-sha256";
 import PageLayout from "../../layouts/page.astro";
 import Disc from "./_disc.astro";
+import PageTitle from "../../components/page-title.astro";
 
 const allMusic = await getCollection("music");
 
@@ -26,6 +27,8 @@ const stringToHsl = (str: string) => {
 ---
 
 <PageLayout title="Music">
+  <PageTitle>Music</PageTitle>
+
   <div class="flex flex-col items-center">
     <div class="flex flex-wrap justify-around gap-4">
       {allMusic.map((piece) => {

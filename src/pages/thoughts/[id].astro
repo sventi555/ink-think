@@ -1,6 +1,7 @@
 ---
 import { getCollection, render } from "astro:content";
 import PageLayout from "../../layouts/page.astro";
+import PageTitle from "../../components/page-title.astro";
 
 export async function getStaticPaths() {
   const thoughts = await getCollection("thoughts");
@@ -15,6 +16,7 @@ const { Content } = await render(thought);
 ---
 
 <PageLayout title={`Thoughts - ${thought.data.title}`}>
-  <h1 class="mb-4 text-4xl">{thought.data.title}</h1>
+  <PageTitle>{thought.data.title}</PageTitle>
+
   <Content />
 </PageLayout>

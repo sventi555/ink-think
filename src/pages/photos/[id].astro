@@ -1,6 +1,7 @@
 ---
 import { getCollection } from "astro:content";
 import PageLayout from "../../layouts/page.astro";
+import PageTitle from "../../components/page-title.astro";
 
 export async function getStaticPaths() {
   const photos = await getCollection("photos");
@@ -14,12 +15,13 @@ const { photo } = Astro.props;
 ---
 
 <PageLayout title=`Photos - ${photo.data.title}`>
-  <div class="flex flex-col items-center gap-1">
+  <PageTitle>{photo.data.title}</PageTitle>
+
+  <div class="flex grow flex-col items-center">
     <img
       src={`/media/images/${photo.data.filename}`}
       alt={photo.data.title}
       class="max-h-[75vh]"
     />
-    <span class="italic">{photo.data.title}</span>
   </div>
 </PageLayout>

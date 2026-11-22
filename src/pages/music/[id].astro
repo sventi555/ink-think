@@ -1,6 +1,8 @@
 ---
 import { getCollection } from "astro:content";
 import PageLayout from "../../layouts/page.astro";
+import PageTitle from "../../components/page-title.astro";
+import clsx from "clsx";
 
 export async function getStaticPaths() {
   const music = await getCollection("music");
@@ -14,13 +16,29 @@ const { piece } = Astro.props;
 ---
 
 <PageLayout title=`Music - ${piece.data.title}`>
-  <div class="flex flex-col items-center">
-    <h1 class="mb-4 text-3xl">{piece.data.title}</h1>
+  <PageTitle>{piece.data.title}</PageTitle>
+
+  <div class="flex grow flex-col items-center justify-center">
     {piece.data.kind === "audio" && (
       <audio controls src={`/media/audio/${piece.data.filename}`} />
     )}
     {piece.data.kind === "video" && (
-      <video controls src={`/media/video/${piece.data.filename}`} />
+      <video
+        controls
+        src={`/media/videos/${piece.data.filename}`}
+        class="max-h-[640px]"
+      />
+    )}
+    {piece.data.kind === "embed" && (
+      <iframe
+        src={piece.data.src}
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen
+        class={clsx(
+          "max-h-[640px]",
+          piece.data.aspect === "portrait" ? "aspect-9/16" : "aspect-16/9",
+        )}
+      />
     )}
   </div>
 </PageLayout>

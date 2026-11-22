@@ -1,11 +1,14 @@
 ---
 import { getCollection } from "astro:content";
 import PageLayout from "../../layouts/page.astro";
+import PageTitle from "../../components/page-title.astro";
 
 const allPhotos = await getCollection("photos");
 ---
 
 <PageLayout title="Photos">
+  <PageTitle>Photos</PageTitle>
+
   <div class="flex flex-col items-center">
     <div class="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
       {allPhotos.map((photo) => (
