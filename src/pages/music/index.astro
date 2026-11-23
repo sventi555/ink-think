@@ -1,9 +1,9 @@
 ---
 import { getCollection } from "astro:content";
 import { sha256 } from "js-sha256";
+import PageTitle from "../../components/page-title.astro";
 import PageLayout from "../../layouts/page.astro";
 import Disc from "./_disc.astro";
-import PageTitle from "../../components/page-title.astro";
 
 const allMusic = await getCollection("music");
 
